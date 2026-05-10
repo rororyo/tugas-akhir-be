@@ -42,7 +42,6 @@ logs/
 # =========================
 .ipynb_checkpoints/
 *.joblib
-*.pkl
 *.h5
 *.pt
 *.onnx
