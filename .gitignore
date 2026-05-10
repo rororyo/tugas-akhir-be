@@ -48,7 +48,6 @@ logs/
 *.onnx
 
 # trained models
-models/
 checkpoints/
 
 # =========================
