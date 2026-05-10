@@ -7,6 +7,8 @@ from datetime import datetime
 def create_app():
     app = Flask(__name__)
 
+    init_model()
+
     CORS(
         app,
         resources={
@@ -36,8 +38,5 @@ def create_app():
 
 
 if __name__ == "__main__":
-    print("Initializing model...")
-    init_model()
-
     app = create_app()
     app.run(host="0.0.0.0", port=5000, debug=False)
