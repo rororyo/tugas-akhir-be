@@ -18,22 +18,6 @@ def _next_anon_uid() -> int:
     return uid
 
 
-def _risk_level(prob: float) -> str:
-    if prob >= 0.7:
-        return "high"
-    if prob >= 0.4:
-        return "medium"
-    return "low"
-
-
-def _confidence(prob: float) -> str:
-    if prob > 0.8 or prob < 0.2:
-        return "high"
-    if prob > 0.6 or prob < 0.4:
-        return "medium"
-    return "low"
-
-
 def _run_pipeline(df_raw: pd.DataFrame) -> tuple:
     t0 = time.time()
     art          = get_artifacts()
@@ -89,8 +73,6 @@ def run_batch(df_raw: pd.DataFrame) -> dict:
             "user_id":           int(row["user_id"]) if "user_id" in row else None,
             "fraud_probability": round(prob_f, 6),
             "is_fraud":          bool(prob_f >= thr),
-            "risk_level":        _risk_level(prob_f),
-            "confidence":        _confidence(prob_f),
         })
 
     flagged = sum(p["is_fraud"] for p in predictions)
@@ -149,8 +131,6 @@ def run_single(body: dict) -> dict:
         "assigned_user_id":  assigned,
         "fraud_probability": round(prob_f, 6),
         "is_fraud":          bool(prob_f >= thr),
-        "risk_level":        _risk_level(prob_f),
-        "confidence":        _confidence(prob_f),
         "imputed_fields":    imputed_cols,
         "warning":           (
             "Hasil didasarkan pada data tidak lengkap. "
