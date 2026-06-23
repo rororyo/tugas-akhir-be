@@ -17,11 +17,11 @@ REQUIRED_COLS = {"amount", "merchant_category"}
 # total_transactions_user and avg_amount_user are NOT here — they are always
 # computed from the batch itself by infer_user_stats().
 IMPUTATION_DEFAULTS = {
-    "account_age_days":     365,
-    "shipping_distance_km": 200.0,
+    "account_age_days":     973,
+    "shipping_distance_km": 356.9,
     "avs_match":            1,
     "cvv_result":           1,
-    "three_ds_flag":        0,
+    "three_ds_flag":        1,
     "promo_used":           0,
     "channel":              "web",
     "country":              "US",
